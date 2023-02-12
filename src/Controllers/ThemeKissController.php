@@ -49,7 +49,7 @@ class ThemeKissController
                 if (request('filter')['sort'] == 'view') {
                     return $movie->orderBy('view_total', 'desc');
                 }
-            })->paginate(36);
+            })->paginate(35);
 
             return view('themes::themekiss.catalog', [
                 'data' => $data,
@@ -57,8 +57,15 @@ class ThemeKissController
                 'section_name' => "Tìm kiếm phim: $request->search"
             ]);
         }
+
+        $trending_this_week = Cache::get('trending_this_week');
+        if(is_null($trending_this_week)) {
+            $trending_this_week = Movie::orderBy('view_week', 'desc')->limit(1)->get()->first();
+            Cache::put('trending_this_week', $trending_this_week, setting('site_cache_ttl', 5 * 60));
+        }
         return view('themes::themekiss.index', [
-            'title' => Setting::get('site_homepage_title')
+            'title' => Setting::get('site_homepage_title'),
+            'trending_this_week' => $trending_this_week
         ]);
     }
 
@@ -79,7 +86,7 @@ class ThemeKissController
         $movie_related_cache_key = 'movie_related.' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
         if(is_null($movie_related)) {
-            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(12)->get();
+            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(10)->get();
             Cache::put($movie_related_cache_key, $movie_related, setting('site_cache_ttl', 5 * 60));
         }
 
@@ -113,7 +120,7 @@ class ThemeKissController
         $movie_related_cache_key = 'movie_related.' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
         if(is_null($movie_related)) {
-            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(12)->get();
+            $movie_related = $movie->categories[0]->movies()->inRandomOrder()->limit(10)->get();
             Cache::put($movie_related_cache_key, $movie_related, setting('site_cache_ttl', 5 * 60));
         }
 
@@ -150,7 +157,7 @@ class ThemeKissController
             'rating_star' => $movie->rating_star +  ((int) request('rating') - $movie->rating_star) / ($movie->rating_count + 1)
         ]);
 
-        return response([], 204);
+        return response()->json(['status' => true, 'rating_star' => number_format($movie->rating_star, 1), 'rating_count' => $movie->rating_count]);
     }
 
     public function getMovieOfCategory(Request $request, $slug)
@@ -162,7 +169,7 @@ class ThemeKissController
 
         $category->generateSeoTags();
 
-        $movies = $category->movies()->orderBy('created_at', 'desc')->paginate(36);
+        $movies = $category->movies()->orderBy('created_at', 'desc')->paginate(35);
 
         return view('themes::themekiss.catalog', [
             'data' => $movies,
@@ -181,7 +188,7 @@ class ThemeKissController
 
         $region->generateSeoTags();
 
-        $movies = $region->movies()->orderBy('created_at', 'desc')->paginate(36);
+        $movies = $region->movies()->orderBy('created_at', 'desc')->paginate(35);
 
         return view('themes::themekiss.catalog', [
             'data' => $movies,
@@ -200,7 +207,7 @@ class ThemeKissController
 
         $actor->generateSeoTags();
 
-        $movies = $actor->movies()->orderBy('created_at', 'desc')->paginate(36);
+        $movies = $actor->movies()->orderBy('created_at', 'desc')->paginate(35);
 
         return view('themes::themekiss.catalog', [
             'data' => $movies,
@@ -219,7 +226,7 @@ class ThemeKissController
 
         $director->generateSeoTags();
 
-        $movies = $director->movies()->orderBy('created_at', 'desc')->paginate(36);
+        $movies = $director->movies()->orderBy('created_at', 'desc')->paginate(35);
 
         return view('themes::themekiss.catalog', [
             'data' => $movies,
@@ -238,7 +245,7 @@ class ThemeKissController
 
         $tag->generateSeoTags();
 
-        $movies = $tag->movies()->orderBy('created_at', 'desc')->paginate(36);
+        $movies = $tag->movies()->orderBy('created_at', 'desc')->paginate(35);
         return view('themes::themekiss.catalog', [
             'data' => $movies,
             'tag' => $tag,
@@ -252,20 +259,20 @@ class ThemeKissController
         switch ($slug) {
             case 'phim-de-cu':
                 $section_name = 'Phim Hot Đề Cử';
-                $movies = Movie::where('is_recommended', 1)->orderBy('created_at', 'desc')->paginate(36);
+                $movies = Movie::where('is_recommended', 1)->orderBy('created_at', 'desc')->paginate(35);
                 break;
             case 'phim-chieu-rap':
                 $section_name = 'Phim Chiếu Rạp';
-                $movies = Movie::where('is_shown_in_theater', 1)->orderBy('created_at', 'desc')->paginate(36);
+                $movies = Movie::where('is_shown_in_theater', 1)->orderBy('created_at', 'desc')->paginate(35);
                 break;
             case 'phim-sap-chieu':
                 $section_name = 'Phim Sắp Chiếu';
-                $movies = Movie::where('status', 'trailer')->orderBy('created_at', 'desc')->paginate(36);
+                $movies = Movie::where('status', 'trailer')->orderBy('created_at', 'desc')->paginate(35);
                 break;
             default:
                 $type = $slug == 'phim-le' ? 'single' : 'series';
                 $section_name = $slug == 'phim-le' ? 'Phim Lẻ' : 'Phim Bộ';
-                $movies = Movie::where('type', $type)->orderBy('created_at', 'desc')->paginate(36);
+                $movies = Movie::where('type', $type)->orderBy('created_at', 'desc')->paginate(35);
                 break;
         }
 
