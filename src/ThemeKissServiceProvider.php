@@ -18,6 +18,10 @@ class ThemeKissServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/assets' => public_path('themes/kiss')
         ], 'kiss-assets');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views/errors' => base_path('resources/views/errors')
+        ], 'kiss-error-page');
     }
 
     protected function setupDefaultThemeCustomizer()
@@ -27,7 +31,7 @@ class ThemeKissServiceProvider extends ServiceProvider
                 'name' => 'Theme Kiss',
                 'author' => 'opdlnf01@gmail.com',
                 'package_name' => 'ophimcms/theme-kiss',
-                'publishes' => ['kiss-assets'],
+                'publishes' => ['kiss-assets', 'kiss-error-page'],
                 'preview_image' => '',
                 'options' => [
                     [
