@@ -2,16 +2,16 @@
 
 ## Demo
 ### Trang Chủ
-<!-- ![Alt text](https://i.ibb.co/MBSg0Dr/BPTV-INDEX.png "Home Page") -->
+![Alt text](https://i.ibb.co/Lp7G8gH/THEME-KISS-INDEX.png "Home Page")
 
 ### Trang Danh Sách Phim
-<!-- ![Alt text](https://i.ibb.co/vZ6FKCN/BPTV-CATALOG.png "Catalog Page") -->
+![Alt text](https://i.ibb.co/f8TLCzc/THEME-KISS-CATALOG.png "Catalog Page")
 
 ### Trang Thông Tin Phim
-<!-- ![Alt text](https://i.ibb.co/gwTv76L/BPTV-SINGLE.png "Single Page") -->
+![Alt text](https://i.ibb.co/k0qymfm/THEME-KISS-SINGLE.png "Single Page")
 
 ### Trang Xem Phim
-<!-- ![Alt text](https://i.ibb.co/zFL4LKT/BPTV-EPISODE.png "Episode Page") -->
+![Alt text](https://i.ibb.co/LhWJ0rL/THEME-KISS-EPISODE.png "Episode Page")
 
 ## Requirements
 https://github.com/hacoidev/ophim-core
