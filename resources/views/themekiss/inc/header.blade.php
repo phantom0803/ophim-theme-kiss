@@ -10,7 +10,7 @@
         <header class="mainheader" role="banner" itemscope itemtype="http://schema.org/WPHeader">
             <div class="site-branding logox">
                 <h1 class="logos">
-                    <a href="/" itemprop="url" title="{{ $title }}">
+                    <a href="/" itemprop="url" title="{{ $title }}" alt="{{ $title }}">
                         @if ($logo)
                             {!! $logo !!}
                         @else
