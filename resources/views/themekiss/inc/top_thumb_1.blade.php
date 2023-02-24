@@ -9,7 +9,7 @@
                     <li>
                         <div class="ctr">{{ $loop->index + 1 }}</div>
                         <div class="imgseries"><a class="series" href="{{ $movie->getUrl() }}" rel="68"> <img
-                                    src="{{ $movie->thumb_url }}"
+                                    src="{{ $movie->thumb_url }}" alt="{{ $movie->name }}"
                                     class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                     width="214" height="300" /> </a></div>
                         <div class="leftseries">
