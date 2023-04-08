@@ -42,7 +42,7 @@
                                         <div class="ply"><i class="far fa-play-circle"></i></div>
                                         <div class="bt"><span class="epx">{{ $movie->episode_current }}</span> <span
                                                 class="sb Soft Sub">{{ $movie->language }}</span></div>
-                                        <img src="{{ $movie->thumb_url }}"
+                                        <img src="{{ $movie->getThumbUrl() }}"
                                             class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                             itemprop="image"
                                             title="{{ $movie->name }} ({{ $movie->origin_name }}) [{{ $movie->publish_year }}]"

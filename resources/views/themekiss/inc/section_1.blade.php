@@ -10,7 +10,7 @@
                             class="tip" rel="{{ $movie->id }}">
                             <div class="limit">
                                 <div class="typez">{{ $movie->quality }}</div>
-                                <img src="{{ $movie->thumb_url }}"
+                                <img src="{{ $movie->getThumbUrl() }}"
                                     class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                     itemprop="image" title="{{ $movie->name }}" alt="{{ $movie->name }}"
                                     width="203" height="300" />

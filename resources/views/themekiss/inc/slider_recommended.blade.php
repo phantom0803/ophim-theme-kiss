@@ -2,13 +2,13 @@
     <div class="loop owl-carousel full">
         @foreach ($recommendations as $movie)
             <div class="slide-item full">
-                <div class="slide-bg"><img src="{{ $movie->poster_url ?: $movie->thumb_url }}"
+                <div class="slide-bg"><img src="{{ $movie->getPosterUrl() }}"
                         class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy" itemprop="image"
                         title="{{ $movie->name }}" alt="{{ $movie->name }}" width="212" height="300" /></div>
                 <div class="slide-shadow"></div>
                 <div class="slide-content">
                     <div class="poster" style="position:relative"><a href="{{ $movie->getUrl() }}"> <img
-                                src="{{ $movie->thumb_url }}"
+                                src="{{ $movie->getThumbUrl() }}"
                                 class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                 itemprop="image" title="{{ $movie->name }}" alt="{{ $movie->name }}" width="212"
                                 height="300" /> </a></div>
@@ -17,7 +17,7 @@
                             <div class="rating">
                                 <div class="vote">
                                     <div class="site-vote"><span class="fa fa-star"
-                                            aria-hidden="true"><span>{{ number_format($movie->rating_star, 1) }}</span></span>
+                                            aria-hidden="true"><span>{{$movie->getRatingStar()}}</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="imgxa">
-                    <div class="imgxb" style="background-image: url('{{ $trending_this_week->thumb_url }}');">
+                    <div class="imgxb" style="background-image: url('{{ $trending_this_week->getThumbUrl() }}');">
                     </div>
                 </div>
             </a></div>

@@ -9,7 +9,7 @@
                     <li>
                         <div class="ctr">{{ $loop->index + 1 }}</div>
                         <div class="imgseries"><a class="series" href="{{ $movie->getUrl() }}" rel="68"> <img
-                                    src="{{ $movie->thumb_url }}"
+                                    src="{{ $movie->getThumbUrl() }}"
                                     class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                     width="214" height="300" /> </a></div>
                         <div class="leftseries">
@@ -30,10 +30,10 @@
                                 <div class="rating">
                                     <div class="rating-prc">
                                         <div class="rtp">
-                                            <div class="rtb"><span style="width:{{(number_format($movie->rating_star, 0))*10}}%"></span></div>
+                                            <div class="rtb"><span style="width:{{($movie->getRatingStar())*10}}%"></span></div>
                                         </div>
                                     </div>
-                                    <div class="numscore">{{ number_format($movie->rating_star, 1) }}</div>
+                                    <div class="numscore">{{$movie->getRatingStar()}}</div>
                                 </div>
                             </div>
                         </div>

@@ -57,7 +57,7 @@
         <div class="bixbox animefull">
             <div class="bigcover">
                 <div class="ime"><a href="{{ $watchUrl }}" class="lnk"></a> <img
-                        src="{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}" alt="{{ $currentMovie->name }}" />
+                        src="{{ $currentMovie->getPosterUrl() }}" alt="{{ $currentMovie->name }}" />
                 </div>
                 @if ($watchUrl != '#')
                     <a href="{{ $watchUrl }}" class="gp"><i class="far fa-play-circle" aria-hidden="true"></i></a>
@@ -66,7 +66,7 @@
             <div class="bigcontent">
                 <div class="thumbook">
                     <div class="thumb" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                        <img src="{{ $currentMovie->thumb_url }}"
+                        <img src="{{ $currentMovie->getThumbUrl() }}"
                             class="ts-post-image wp-post-image attachment-post-thumbnail size-post-thumbnail" loading="lazy"
                             itemprop="image" title="{{ $currentMovie->name }}" alt="{{ $currentMovie->name }}"
                             width="900" height="1594" />
@@ -199,7 +199,7 @@
                 target="_blank" class="twt"> <i class="fab fa-twitter"></i> <span>Twitter</span> </a> <a
                 href="whatsapp://send?text={{ $currentMovie->name }} {{ $currentMovie->getUrl() }}" target="_blank"
                 class="wa"> <i class="fab fa-whatsapp"></i> <span>WhatsApp</span> </a> <a
-                href="https://pinterest.com/pin/create/button/?url={{ $currentMovie->getUrl() }}&media={{ $currentMovie->thumb_url }}&description={{ $currentMovie->name }}"
+                href="https://pinterest.com/pin/create/button/?url={{ $currentMovie->getUrl() }}&media={{ $currentMovie->getThumbUrl() }}&description={{ $currentMovie->name }}"
                 target="_blank" class="pntrs"> <i class="fab fa-pinterest-p"></i> <span>Pinterest</span>
             </a>
         </div>

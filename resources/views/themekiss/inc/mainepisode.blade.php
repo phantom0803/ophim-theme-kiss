@@ -4,7 +4,7 @@
             <div class="headlist">
                 <div class="thumb">
                     <a href="{{$currentMovie->getUrl()}}">
-                        <img src="{{$currentMovie->thumb_url}}"
+                        <img src="{{$currentMovie->getThumbUrl()}}"
                             class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                             title="{{$currentMovie->name}}" alt="{{$currentMovie->name}}" width="203" height="300">
                     </a>
@@ -36,7 +36,7 @@
                                         $ep_link = $item->sortByDesc('type')->first()->link;
                                         $ep_img = str_replace('index.m3u8', '1.jpg', $ep_link, $check_replace);
                                         if ($check_replace == 0) {
-                                            $ep_img = $currentMovie->poster_url ?: $currentMovie->thumb_url;
+                                            $ep_img = $currentMovie->getPosterUrl();
                                         }
                                     @endphp
                                     <img src="{{$ep_img}}"

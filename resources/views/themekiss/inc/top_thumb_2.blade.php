@@ -7,7 +7,7 @@
             @foreach ($top['data'] as $movie)
                 <li>
                     <div class="imgseries"><a class="series" href="{{ $movie->getUrl() }}" rel=""> <img
-                                src="{{ $movie->thumb_url }}"
+                                src="{{ $movie->getThumbUrl() }}"
                                 class="ts-post-image wp-post-image attachment-medium size-medium" loading="lazy"
                                 itemprop="image" title="{{$movie->name}} ({{$movie->publish_year}})" alt="{{$movie->name}} ({{$movie->publish_year}})"
                                 width="200" height="300" /> </a></div>
