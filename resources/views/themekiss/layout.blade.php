@@ -50,6 +50,9 @@
     <div id='shadow'></div>
     <div class="mainholder">
         @include('themes::themekiss.inc.header')
+        @if (get_theme_option('ads_header'))
+            {!! get_theme_option('ads_header') !!}
+        @endif
         <div id="content">
             <div class="wrapper">
                 <div class="pd-expand"></div>
@@ -68,6 +71,7 @@
 @endpush
 
 @section('footer')
+    {!! get_theme_option('ads_catfish') !!}
     <script type='text/javascript' src='{{ asset('/themes/kiss/js/app_2.js') }}' id='qtip-js'></script>
     {!! setting('site_scripts_google_analytics') !!}
 @endsection
